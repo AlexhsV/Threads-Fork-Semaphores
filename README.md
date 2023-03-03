@@ -1,24 +1,24 @@
 # Threads-Fork-Semaphores
 ask1:
-Γράψτε ένα πρόγραμμα C με τις κατάλληλες εντολές fork() ώστε να δημιουργηθούν συνολικά (μαζί με το
-κυρίως πρόγραμμα) επτά διεργασίες, με την ακόλουθη δομή (δέντρο) συγγένειας:
+Write a C program with the appropriate fork() commands to create a total (including the main program) of seven processes, with the following kinship structure (tree):
 ![image](https://user-images.githubusercontent.com/98179885/210116201-3e992f1e-0366-4b50-a2e3-1db42f7669d8.png)
 
-Ως κύριο μέρος της εργασίας της, κάθε διεργασία Pi να τυπώνει απλά ένα μήνυμα στην οθόνη που να
-δηλώνει το όνομά της (Pi), το PID (Process ID) της και το PPID (Parent Process ID) της. Το πρόγραμμά σας
-να συμπεριλαμβάνει επιπλέον τις κατάλληλες εντολές αναμονής (κλήσεις συστήματος wait() ή/και
-waitpid()) ώστε να ικανοποιούνται οι ακόλουθοι περιορισμοί:
-1. Η διεργασία P2 πριν εκτελέσει το κύριο μέρος της εργασίας της θα πρέπει να περιμένει την
-ολοκλήρωση τουλάχιστον ενός εκ των άμεσων παιδιών της και
-2. Η διεργασία P1 πριν εκτελέσει την κύρια εργασία της θα πρέπει να περιμένει την ολοκλήρωση
-της διεργασίας P3.
-Τέλος, η P0 με το πέρας της εκτέλεσης της να αντικαθίσταται (χρήση μιας από την οικογένεια κλήσεων
-συστήματος exec()) από την εντολή cat, η οποία θα τυπώνει τον πηγαίο κώδικα του προγράμματος σας.
+As a main part of its job, each Pi process simply prints a message on the screen that
+stating its name (Pi), its PID (Process ID) and its PPID (Parent Process ID). Your program
+additionally include appropriate wait commands (system calls wait() and/or
+waitpid())) to satisfy the following constraints:
+1. The P2 process must wait for the
+at least one of its immediate children to complete; and
+2. Process P1 must wait for the completion of at least one of its first two children before executing its main task.
+of process P3.
+Finally, P0 upon completion of its execution should be replaced (using one of the family of calls
+system exec()) by the cat command, which will print the source code of your program.
+
 
 
 ask2:
-Γράψτε ένα πρόγραμμα C, το οποίο θα χρησιμοποιεί την βιβλιοθήκη των POSIX Threads, η εκτέλεση του
-οποίου θα έχει ως αποτέλεσμα να τυπώνεται επαναληπτικά η ακολουθία:
+Write a C program, which will use the POSIX Threads library, running
+which will result in the sequence being printed iteratively:
 
 Hello there wonderful world!
 
@@ -26,10 +26,10 @@ Hello there wonderful world!
 
 Hello there wonderful world!
 
-…
+...
 
 
-Για να πετύχετε το παραπάνω θα πρέπει στο πρόγραμμα σας να δημιουργείτε 4 διαφορετικά νήματα, εκ
-των οποίων το πρώτο θα τυπώνει συνεχώς “Hello ”, το δεύτερο θα τυπώνει συνεχώς “there ”, το τρίτο
-θα τυπώνει συνεχώς “wonderful ” και το τέταρτο θα τυπώνει συνεχώς “world!”. Θα πρέπει να
-συγχρονίσετε τα νήματα κατάλληλα μεταξύ τους με χρήση σημαφόρων.
+To achieve the above, you will need to create 4 different threads in your program, each of them
+of which the first one will continuously print "Hello ", the second one will continuously print "there ", the third one
+will constantly print "wonderful " and the fourth will constantly print "world!". It should
+synchronize the threads appropriately with each other using flags.
